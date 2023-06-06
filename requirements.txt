@@ -1,2 +1,6 @@
 gunicorn==19.7.1
 Flask
+flask_cors
+pymongo.mongo_client
+pymongo.server_api
+io
