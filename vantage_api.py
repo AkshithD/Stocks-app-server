@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 import requests
-from config import vantage_api_key
+import os
+
 bp = Blueprint('vantage_api', __name__)
 
 @bp.route('/api/vantage/<keyword>', methods=['GET'])
@@ -10,7 +11,7 @@ def search_stocks(keyword):
     querystring = {"keywords":keyword,"function":"SYMBOL_SEARCH","datatype":"json"}
 
     headers = {
-        "X-RapidAPI-Key": vantage_api_key,
+        "X-RapidAPI-Key": os.environ.get('api_key'),
         "X-RapidAPI-Host": "alpha-vantage.p.rapidapi.com"
     }
 

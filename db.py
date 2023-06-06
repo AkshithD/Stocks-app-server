@@ -1,12 +1,12 @@
 from flask import Blueprint, jsonify, request
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from config import dburl
+import os
 
 bp = Blueprint('api', __name__)
 
 # Connect to MongoDB
-uri = dburl
+uri = os.environ.get('dburl')
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))

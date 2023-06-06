@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, send_file
 from io import BytesIO
 import requests
 import json
-from config import twelve_api_key
+import os
 
 bp = Blueprint('twelve_api', __name__)
 current_stock = None
@@ -12,7 +12,7 @@ def get_stock():
     querystring = {"country": "United States", "exchange":"NYSE","format":"json"}
 
     headers = {
-        "X-RapidAPI-Key": twelve_api_key,
+        "X-RapidAPI-Key": os.environ.get('api_key'),
         "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com"
     }
 
@@ -25,7 +25,7 @@ def get_stock_data(symbol):
     querystring = {"symbol":symbol,"interval":"1month","outputsize":"30","format":"json"}
 
     headers = {
-        "X-RapidAPI-Key": twelve_api_key,
+        "X-RapidAPI-Key": os.environ.get('api_key'),
         "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com"
     }
 

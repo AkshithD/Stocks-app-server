@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 import requests
-from config import mboum_api_key
+import os
 
 bp = Blueprint('mboum_api', __name__)
 
@@ -11,7 +11,7 @@ def get_stock(symbol):
     querystring = {"symbol":symbol}
 
     headers = {
-        "X-RapidAPI-Key": mboum_api_key,
+        "X-RapidAPI-Key": os.environ.get('api_key'),
         "X-RapidAPI-Host": "mboum-finance.p.rapidapi.com"
     }
 
@@ -23,7 +23,7 @@ def get_news():
     url = "https://mboum-finance.p.rapidapi.com/ne/news"
 
     headers = {
-        "X-RapidAPI-Key": mboum_api_key,
+        "X-RapidAPI-Key": os.environ.get('api_key'),
         "X-RapidAPI-Host": "mboum-finance.p.rapidapi.com"
     }
 
